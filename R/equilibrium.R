@@ -71,14 +71,14 @@ eq_objective_6_59_mo <- function(eir, target_pfpr, ft){
 #'
 #' @examples
 #' get_eq_eir(target_pfpr = 0.2, ft = 0.4)
-get_eq_eir <- function(target_pfpr, ft = 0.1, use_pfpr_6_59_mo = FALSE){
+get_eq_eir <- function(target_pfpr, ft = 0.1, pfpr_6_59_on = FALSE){
   if(target_pfpr <= 0 | target_pfpr > 0.9){
     stop("eq_pfpr must be between 0 and 0.9")
   }
   if(ft < 0 | ft >= 1){
     stop("ft must be between 0 and 1")
   }
-  if (use_pfpr_6_59_mo) {
+  if (pfpr_6_59_on) {
     opt <- stats::uniroot(
       f = eq_objective_6_59_mo,
       lower = .Machine$double.eps,
