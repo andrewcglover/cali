@@ -16,7 +16,8 @@
 #' @export
 calibrate <- function(parameters, target, summary_function, eq_prevalence, 
                       eq_ft = 0, human_population = c(1000, 10000, 100000), 
-                      eir_limits = c(0, 1500), max_attempts = 10){
+                      eir_limits = c(0, 1500), max_attempts = 10,
+                      use_pfpr_6_59_mo = FALSE){
   
   eir <- rep(0, 2)
   objective <- rep(NA, 2)
@@ -26,7 +27,8 @@ calibrate <- function(parameters, target, summary_function, eq_prevalence,
   message("Initialising EIR\n")
   eir[1] <- get_eq_eir(
     target_pfpr = eq_prevalence,
-    ft = eq_ft
+    ft = eq_ft,
+    pfpr_6_59_on = use_pfpr_6_59_mo
   )
   if(eir[1] < eir_limits[1]){
     eir[1] <- eir_limits[1] + 1
